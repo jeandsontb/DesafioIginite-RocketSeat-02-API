@@ -20,7 +20,7 @@ O desafio consiste em implementar os middleware que a aplicação principal nece
 Esses são os middlewares que a aplicação irá chamar para que todos os testes passem
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Test" title="#Test" src="" width="400px">
+  <img alt="Test" title="#Test" src="https://raw.githubusercontent.com/jeandsontb/DesafioIginite-RocketSeat-02-API/main/screen/testes02.png" width="400px">
 
 ## 🛠 Tecnologias
 
