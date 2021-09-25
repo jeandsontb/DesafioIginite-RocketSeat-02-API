@@ -26,10 +26,13 @@ function checksExistsUserAccount(request, response, next) {
 function checksCreateTodosUserAvailability(request, response, next) {
   const { user } = request;
 
-  const userVerify = user.filter(plan => plan.pro === false && plan.todos.length < 10);
+  const plan = user.pro;
+  let todos = user.todos;
 
-  if(!userVerify) {
-    return response.status(403).json({error: 'free activity limit exceeded'});
+  if(plan === false && todos.length >= 10) {
+    return response.status(403).json({
+      error: 'You have reached the limit of 10 posts for your plan'
+    });
   }
 
   return next();
@@ -37,11 +40,43 @@ function checksCreateTodosUserAvailability(request, response, next) {
 }
 
 function checksTodoExists(request, response, next) {
-  // Complete aqui
+  const { username } = request.headers;
+  const { id } = request.params;
+
+  const user = users.find(user => user.username === username);
+
+  if(!user) {
+    return response.status(404).json({error: 'User not found'});
+  }
+
+  if(!validate(id)) {
+    return response.status(400).json({error: 'UUID does not valid'});
+  }
+
+  const todo = user.todos.find(todo => todo.id === id);
+
+  if(!todo) {
+    return response.status(404).json({error: 'Todo does not found'});
+  }
+
+  request.user = user;
+  request.todo = todo;
+
+  return next();
 }
 
 function findUserById(request, response, next) {
-  // Complete aqui
+  const { id } = request.params;
+
+  const user = users.find(userfound => userfound.id === id);
+
+  if (!user) {
+    return response.status(404).json({error: "User not exists"});
+  }
+
+  request.user = user;
+
+  return next();
 }
 
 app.post('/users', (request, response) => {
