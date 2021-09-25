@@ -19,6 +19,9 @@ O desafio consiste em implementar os middleware que a aplicação principal nece
   * findUserById
 Esses são os middlewares que a aplicação irá chamar para que todos os testes passem
 
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="Test" title="#Test" src="" width="400px">
+
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
